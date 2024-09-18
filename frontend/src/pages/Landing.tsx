@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import styles from "../styles/Landing.module.scss"
 import lion from "../assets/image (2).png"
 import api from "../services/api";
@@ -7,6 +7,7 @@ import api from "../services/api";
 export default function Landing(){
     const [email, setEmail] = useState<string>('')
     const [password, setPassword] = useState<string>()
+    const navigate = useNavigate()
 
     const login = async (e:React.FormEvent) => {
         e.preventDefault()
@@ -19,9 +20,9 @@ export default function Landing(){
                     'Content-Type':"Application/json"
                 }
             })
-            if(response.data.auth === true && response.status === 200){
+            if(response.data.auth === true && response.status === 200 && response.data.role === 2){
                 localStorage.setItem('token', response.data.token)
-                console.log(response.data)
+                navigate('/client')
             }
         } catch (error) {
             console.log(error)
@@ -34,7 +35,7 @@ export default function Landing(){
                     <h1 className={styles.Title}>Elite Performance</h1>
                 </div>
                 <nav className={styles.Navbar}>
-                    <p className={styles.Pnav}><Link to={'/login'} className={styles.Link}>Sou Instrutor</Link></p>
+                    <p className={styles.Pnav}><Link to={'/logininstructor'} className={styles.Link}>Sou Instrutor</Link></p>
                     <p className={styles.Pnav}><a href="#whoweare" className={styles.Link}>Quem nós somos</a></p>
                     <p className={styles.Pnav}><a href="#health" className={styles.Link}>Saúde e Benefícios</a></p>
                     <p className={styles.Pnav}><a href="#contacts" className={styles.Link}>Contatos</a></p>
