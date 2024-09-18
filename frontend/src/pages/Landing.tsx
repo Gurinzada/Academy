@@ -2,10 +2,31 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import styles from "../styles/Landing.module.scss"
 import lion from "../assets/image (2).png"
+import api from "../services/api";
 
 export default function Landing(){
     const [email, setEmail] = useState<string>('')
     const [password, setPassword] = useState<string>()
+
+    const login = async (e:React.FormEvent) => {
+        e.preventDefault()
+        try {
+            const response = await api.post('/loginuser', {
+                email,
+                password
+            },{
+                headers:{
+                    'Content-Type':"Application/json"
+                }
+            })
+            if(response.data.auth === true && response.status === 200){
+                localStorage.setItem('token', response.data.token)
+                console.log(response.data)
+            }
+        } catch (error) {
+            console.log(error)
+        }
+    }
     return(
         <div className={styles.Container}>
             <header className={styles.HeaderContainer}>
@@ -13,12 +34,13 @@ export default function Landing(){
                     <h1 className={styles.Title}>Elite Performance</h1>
                 </div>
                 <nav className={styles.Navbar}>
-                    <p className={styles.Pnav}><Link to={'/register'} className={styles.Link}>Registre-se</Link></p>
-                    <p className={styles.Pnav}><a href="#whoweare" className={styles.Link}>Quem nós somos?</a></p>
+                    <p className={styles.Pnav}><Link to={'/login'} className={styles.Link}>Sou Instrutor</Link></p>
+                    <p className={styles.Pnav}><a href="#whoweare" className={styles.Link}>Quem nós somos</a></p>
                     <p className={styles.Pnav}><a href="#health" className={styles.Link}>Saúde e Benefícios</a></p>
                     <p className={styles.Pnav}><a href="#contacts" className={styles.Link}>Contatos</a></p>
+                    <p className={styles.Pnav}><Link to={'/register'} className={styles.Link}>Registre-se</Link></p>
                 </nav>
-                <div className={styles.LoginArea}>
+                <form className={styles.LoginArea} onSubmit={login}>
                     <div className={styles.TitleForLogin}>
                         <h4 className={styles.Loginh4}>Ja é cliente?</h4>
                     </div>
@@ -37,7 +59,7 @@ export default function Landing(){
                             <button>Login</button>
                         </div>
                     </div>
-                </div>
+                </form>
             </header>
             <main className={styles.MainContainer}>
                 <section className={styles.SectionBackground}>

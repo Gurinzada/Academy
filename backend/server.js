@@ -1,6 +1,6 @@
 const express = require('express')
 const cors = require('cors')
-const routerAluno = require('./routes/alunosRoutes.js')
+const routerUser = require('./routes/userRoutes.js')
 
 const app = express()
 
@@ -12,4 +12,4 @@ app.listen(3000, () => {
     console.log(`We're listen to the port 3000`)
 })
 
-app.use('/api', routerAluno)
+app.use('/api', routerUser)

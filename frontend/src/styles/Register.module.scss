@@ -1,0 +1,104 @@
+.Container{
+    align-items: center;
+    background-color: #ffffff;
+    display: flex;
+    justify-content:center;
+    height: 100vh;
+}
+
+.FormContainer{
+    background: rgba(255, 255, 255, 0.19);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(0px);
+    -webkit-backdrop-filter: blur(0px);
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: 1fr;
+    grid-column-gap: 1rem;
+    padding: 1.5rem;
+    width: 60%;
+}
+
+.ContainerInputs{
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    gap: 1.35rem;
+    justify-content: center;
+}
+
+.GeneralInputs{
+    align-items: flex-start;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    justify-content: center;
+}
+
+.Label{
+    color: #1c1c1c;
+}
+
+.Input{
+    border: 1px solid #111;
+    border-radius: 8px;
+    height: 1.6rem;
+    padding-left: 0.25rem;
+    width: 140%;
+}
+
+.HeroImg{
+    border-radius: 6px;
+    width: 100%;
+}
+
+.Welcome{
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.ContainerBnt{
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    gap: 1rem;
+    width: 65%;
+}
+
+.BntRegister{
+    color: #ffffff;
+    width: 9.5rem;
+}
+
+@media (max-width: 1024px) {
+    .Input{
+        width: auto;
+    }
+    .BntRegister{
+        width: auto;
+    }
+}
+
+@media (max-width: 768px) {
+    .Input{
+        font-size: 0.65rem;
+        height: 1.2rem;
+        width: 60%;
+    }
+    .BntRegister{
+        font-size: 0.7rem;
+        width: auto;
+    }
+    .ContainerBnt{
+        justify-content: flex-start;
+        width: 65%;
+    }
+    .Label{
+        font-size: 0.65rem;
+    }
+}
