@@ -22,12 +22,32 @@ model aluno{
   password String
   role role @relation(fields: [roleid], references: [id], onDelete: Cascade)
   roleid Int
+  aulas aulas[]
 }
 
+model professor{
+  id Int @id @default(autoincrement())
+  name String
+  lastname String
+  email String @unique
+  password String
+  role role @relation(fields: [roleid], references: [id], onDelete: Cascade)
+  roleid Int
+  aulas aulas[]
+}
 
+model aulas{
+  id Int @id @default(autoincrement())
+  horario String
+  professor professor @relation(fields: [idprofessor], references: [id], onDelete: Cascade)
+  idprofessor Int
+  aluno aluno @relation(fields: [idaluno], references: [id], onDelete: Cascade)
+  idaluno Int
+}
 
 model role{
   id Int @id @default(autoincrement())
   namerole String @unique
   aluno aluno[]
+  professor professor[]
 }
