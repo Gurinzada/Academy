@@ -22,6 +22,7 @@ export default function Landing(){
             })
             if(response.data.auth === true && response.status === 200 && response.data.role === 2){
                 localStorage.setItem('token', response.data.token)
+                localStorage.setItem('role', response.data.role)
                 navigate('/client')
             }
         } catch (error) {
@@ -73,7 +74,7 @@ export default function Landing(){
                     <div className={styles.SectionText1}>
                         <p className={styles.P}>
                             Na Elite Perfomace, acreditamos que cada jornada é única e poderosa.
-                            Somos uma academia focada em transofrmar vidas através do movimento, da disciplinca e
+                            Somos uma academia focada em transofrmar vidas através do movimento, da disciplina e
                             do desempenho de alto nível.
                         </p>
                         <img src="https://img.freepik.com/fotos-gratis/homem-jovem-fitness-em-estudio_7502-5008.jpg?t=st=1726618158~exp=1726621758~hmac=9739629bfd3460f06091479983f046c7041013fce49d549868ff13d42295cde5&w=996" alt="imghere" className={styles.Img}/>

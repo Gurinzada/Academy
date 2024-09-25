@@ -23,6 +23,7 @@ export default function LoginInstructor(){
 
             if(response.status === 200 && response.data.auth && response.data.role === 3){
                 localStorage.setItem('token', response.data.token)
+                localStorage.setItem('role', response.data.role)
             }
         } catch (error) {
             console.log(error)

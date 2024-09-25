@@ -4,6 +4,7 @@ import RegisterStudent from "./pages/RegisterStudent";
 import PrivateRoute from "./components/PrivateRoutes";
 import Client from "./pages/Client";
 import LoginInstructor from "./pages/LoginInstructor";
+import ProfessorClient from "./pages/ProfessorClient";
 
 
 const route = createBrowserRouter([
@@ -22,6 +23,10 @@ const route = createBrowserRouter([
     {
         path: "/logininstructor",
         element: <LoginInstructor/>
+    },
+    {
+        path:"clientprof",
+        element: <PrivateRoute><ProfessorClient/></PrivateRoute>
     }
 ])
 

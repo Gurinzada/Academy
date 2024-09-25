@@ -45,6 +45,7 @@ model aulas{
   idaluno Int
 }
 
+
 model role{
   id Int @id @default(autoincrement())
   namerole String @unique
