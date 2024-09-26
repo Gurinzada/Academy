@@ -1,14 +1,10 @@
-import { useState } from "react"
-import { aluno } from "../services/interfaces/interfaces"
+import Header from "../components/Header";
 
 export default function Client(){
 
-    const [infosUser, setInfosUser] = useState<aluno | null>(null)
-
-
     return(
         <div>
-            
+            <Header/>
         </div>
     )
 }
