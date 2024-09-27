@@ -11,7 +11,7 @@ router.get('/userinfo',  controllerMiddle.executionTime, controllerMiddle.dynami
 
 
 //Uso para testes
-router.get('/all',  controllerMiddle.executionTime, controllerMiddle.dynamicAnalysis, controllerMiddle.executionTime, controllerMiddle.dynamicAnalysis,userController.getAllUsers)
-router.get('/professor/:id', controllerMiddle.executionTime, controllerMiddle.dynamicAnalysis, userController.getUserById)
+router.get('/all',  controllerMiddle.executionTime, controllerMiddle.dynamicAnalysis, controllerMiddle.logRequestHeaders,userController.getAllUsers)
+router.get('/professor/:id', controllerMiddle.executionTime, controllerMiddle.dynamicAnalysis, controllerMiddle.logRequestHeaders, userController.getUserById)
 
 module.exports = router
