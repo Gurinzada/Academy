@@ -38,6 +38,7 @@ model professor{
 
 model aulas{
   id Int @id @default(autoincrement())
+  dia String
   horario String
   professor professor @relation(fields: [idprofessor], references: [id], onDelete: Cascade)
   idprofessor Int

@@ -3,3 +3,9 @@ export interface aluno{
     name:string,
     lastname:string,
 }
+
+export interface optionsForName{
+    id:number
+    name:string,
+    lastname:string
+}

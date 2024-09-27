@@ -164,4 +164,51 @@ const getUserById = async (req, res) => {
     }
 }
 
-module.exports = {login, newUser, verifyToken, getUserInfo, getAllUsers, loginInstructor,getUserById}
+const getInstructorsNames = async (req, res) => {
+    try {
+        const names = []
+        const response = await prisma.professor.findMany()
+        if(response){
+            response.forEach((element) => {
+                names.push({id:element.id,name:element.name, lastname:element.lastname})
+            })
+            return res.status(200).json(names)
+        }
+    } catch {
+        return res.status(500).json({message: `Server Error`})
+    }
+}
+
+const logout = async (req,res) => {
+    try {
+        const role = req.headers["x-role"]
+        if(Number(role) === 2){
+            const response = await prisma.aluno.findUnique({
+                where:{
+                    id: req.userid
+                }
+            })
+            if(response){
+                return res.status(200).json({...response, removeToken: true})
+            }
+        } else if(Number(role)  === 3){
+            const response = await prisma.professor.findUnique({
+                where:{
+                    id:req.userid
+                }
+            })
+            if(response){
+                return res.status(200).json({...response, removeToken: true})
+            }
+        }
+    } catch {
+        return res.status(500).json({message: `Server Error`})
+    }
+}
+
+module.exports = {
+    login, newUser, 
+    verifyToken, 
+    getUserInfo, getAllUsers, 
+    loginInstructor,getUserById, 
+    getInstructorsNames, logout}

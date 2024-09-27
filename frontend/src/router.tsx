@@ -5,6 +5,7 @@ import PrivateRoute from "./components/PrivateRoutes";
 import Client from "./pages/Client";
 import LoginInstructor from "./pages/LoginInstructor";
 import ProfessorClient from "./pages/ProfessorClient";
+import Schedule from "./pages/Schedule";
 
 
 const route = createBrowserRouter([
@@ -25,8 +26,12 @@ const route = createBrowserRouter([
         element: <LoginInstructor/>
     },
     {
-        path:"clientprof",
+        path:"/clientprof",
         element: <PrivateRoute><ProfessorClient/></PrivateRoute>
+    },
+    {
+        path:"/classes",
+        element: <PrivateRoute><Schedule/></PrivateRoute>
     }
 ])
 
