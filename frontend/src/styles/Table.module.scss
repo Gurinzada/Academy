@@ -1,0 +1,64 @@
+.Container{
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+    justify-content: center;
+    padding: 0.55rem;
+}
+
+.SectionForTable{
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+
+.TableHours {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: 'Poppins', sans-serif;
+    text-align: center;
+  }
+  
+  .TableHours thead th {
+    background-color: #3CB371;
+    color: white;
+    padding: 10px;
+    font-size: 18px;
+  }
+  
+  .TableHours tbody td {
+    border: 1px solid #ddd;
+    font-size: 1.2rem;
+    color: #333;
+    padding: 0.5rem;
+  }
+  
+  .TableHours tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+  
+  .TableHours tr:hover {
+    background-color: #e0e0e0;
+  }
+  
+  .TableHours td:first-child {
+    background-color: #3CB371;
+    color: white;
+    font-weight: bold;
+  }
+  
+  .TableHours td {
+    padding: 12px;
+    border: 1px solid #ddd;
+  }
+  
+  .TableHours th, .TableHours td {
+    border: 1px solid #ddd;
+  }
+  
+.P{
+    font-weight: 600;
+    font-size: 0.8rem;
+    text-wrap: wrap;
+}

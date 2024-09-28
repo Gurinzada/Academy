@@ -9,3 +9,9 @@ export interface optionsForName{
     name:string,
     lastname:string
 }
+
+export interface classes{
+    id:number,
+    dia:string,
+    horario:string
+}
