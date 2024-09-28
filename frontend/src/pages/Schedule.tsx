@@ -33,7 +33,7 @@ export default function Schedule(){
             const token = localStorage.getItem('token')
             if(!token) return navigate(0)
             if(weekDay === "" && hours === "" && professor === null) return navigate(0)
-            const response = await api.post('/newclass', {
+            const response = await api.post('/toapprove', {
                 weekDay:weekDay,
                 hours:hours,
                 professorid:professor
@@ -114,7 +114,7 @@ export default function Schedule(){
                         </div>
                         <div>
                             <button className={styles.Bnt}>Cadastrar aula</button>
-                            {workRigth === false ? null : <p style={{color:"green"}}>Cadastrado com sucesso</p>}
+                            {workRigth === false ? null : <p style={{color:"green"}}>Cadastrado para aprovação!</p>}
                         </div>
                     </form>
                 </section>

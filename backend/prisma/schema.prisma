@@ -23,6 +23,7 @@ model aluno{
   role role @relation(fields: [roleid], references: [id], onDelete: Cascade)
   roleid Int
   aulas aulas[]
+  aprovelist aprovelist[]
 }
 
 model professor{
@@ -34,6 +35,7 @@ model professor{
   role role @relation(fields: [roleid], references: [id], onDelete: Cascade)
   roleid Int
   aulas aulas[]
+  aprovelist aprovelist[]
 }
 
 model aulas{
@@ -52,4 +54,14 @@ model role{
   namerole String @unique
   aluno aluno[]
   professor professor[]
+}
+
+model aprovelist{
+  id Int @id @default(autoincrement())
+  idaluno Int
+  aluno aluno @relation(fields: [idaluno], references: [id])
+  idprofessor Int
+  professor professor @relation(fields: [idprofessor], references: [id])
+  horario String
+  dia String
 }
