@@ -19,6 +19,29 @@ const newClass = async (req, res) => {
     }
 }
 
+const checkUserClasses = async (req, res, next) => {
+    try {
+        const {weekDay} = req.body
+        const response = await prisma.aulas.findMany({
+            where:{
+                idaluno: req.userid
+            }
+        })
+        if(response.length === 0){
+            next()
+        }
+
+        const findEqual = response.find((element) => element.dia === weekDay)
+        if(findEqual){
+           return res.status(403).json({message: `Not allowed`})
+        }
+        next()
+
+    } catch {
+        return res.status(500).json({message: `Server error`})
+    }
+}
+
 const getUserClass = async (req, res) => {
     try {
         const response = await prisma.aulas.findMany({
@@ -35,4 +58,4 @@ const getUserClass = async (req, res) => {
 }
 
 
-module.exports = {getUserClass, newClass}
+module.exports = {getUserClass, newClass, checkUserClasses}
