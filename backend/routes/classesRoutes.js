@@ -7,7 +7,7 @@ const Router = express.Router()
 
 Router.post('/newclass', middle.executionTime, 
     middle.dynamicAnalysis, middle.logRequestHeaders, 
-    userController.verifyToken,classesController.checkUserClasses, classesController.newClass)
+    userController.verifyToken, classesController.newClass)
 
 Router.get('/getuserclass', middle.executionTime, 
     middle.dynamicAnalysis, middle.logRequestHeaders, 

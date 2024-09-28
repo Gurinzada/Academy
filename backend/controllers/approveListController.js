@@ -1,6 +1,27 @@
 const prisma = require('../config/prisma.js')
 
 
+const checkApproveDays = async(req,res, next) => {
+    try {
+        const {weekDay} = req.body
+        const response = await prisma.aprovelist.findMany({
+            where:{
+                idaluno:req.userid
+            }
+        })
+        if(response.length === 0){
+            next()
+        }
+        const findEqual = response.find((element) => element.dia === weekDay)
+        if(findEqual){
+            return res.status(403).json({message:"Not allowed"})
+        }
+        next()
+    } catch {
+        return res.status(500).json({message:"Server error!"})
+    }
+}
+
 const forApprove = async (req, res) => {
     try {
         const {weekDay, hours, professorid} = req.body
@@ -20,7 +41,7 @@ const forApprove = async (req, res) => {
     }
 }
 
-const approvedClass = async(req,res) => {
+const approvedOrNotClass = async(req,res) => {
     try {
         const {id} = req.params
         const response = await prisma.aprovelist.delete({
@@ -38,6 +59,18 @@ const approvedClass = async(req,res) => {
 
 const getListToApprove = async(req,res) => {
     try {
+       const role = req.headers["x-role"]
+       const roleNumber = Number(role)
+       if(roleNumber === 2){
+        const response = await prisma.aprovelist.findMany({
+            where:{
+                idaluno:req.userid
+            }
+        })
+        if(response){
+            return res.status(200).json(response)
+        }
+       }else if(roleNumber === 3){
         const response = await prisma.aprovelist.findMany({
             where:{
                 idprofessor: req.userid
@@ -46,10 +79,26 @@ const getListToApprove = async(req,res) => {
         if(response){
             return res.status(200).json(response)
         }
+       }
     } catch {
         return res.status(500).json({message:`Server error`})
     }
 }
 
+const getListToApproveUser = async(req, res) => {
+    try {
+        const response = await prisma.aprovelist.findMany({
+            where:{
+                idaluno:req.userid
+            }
+        })
+        if(response){
+            return res.status(200).json(response)
+        }
+    } catch  {
+        return res.status(500).json({message:`Server error`})
+    }
+}
 
-module.exports = {forApprove, approvedClass, getListToApprove}
+
+module.exports = {forApprove, approvedOrNotClass,checkApproveDays, getListToApprove, getListToApproveUser}

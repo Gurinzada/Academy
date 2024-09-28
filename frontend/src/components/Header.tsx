@@ -3,9 +3,12 @@ import { Link, useNavigate } from "react-router-dom"
 import api from "../services/api"
 import { aluno } from "../services/interfaces/interfaces"
 import styles from "../styles/Landing.module.scss"
+import menu from "../assets/menu-svgrepo-com.svg"
+import { relative } from "path"
 
 export default function Header(){
     const [infosUser, setInfosUser] = useState<aluno | null>(null)
+    const [openMenu, setOpenMenu] = useState<boolean>(false)
     const navigate = useNavigate()
 
     useEffect(() => {
@@ -55,10 +58,51 @@ export default function Header(){
         } catch (error) {
             console.log(error)
         }
-    } 
+    }
+
+    const handleOpenMenu = () => {
+        if(openMenu === false){
+            setOpenMenu(() => true)
+        }else{
+            setOpenMenu(() => false)
+        }
+    }
 
     return(
         <header className={styles.HeaderContainer}>
+             <div style={{ position: "relative", zIndex: 2 }}>
+      {/* Ícone do menu */}
+      <img 
+        src={menu} 
+        alt="Menu Icon" 
+        style={{ cursor: 'pointer'}} 
+        onClick={handleOpenMenu} 
+      />
+
+      {/* Menu com animação suave */}
+      <div style={{
+        position: 'absolute',
+        top: '40px',
+        right: '0px',
+        background: '#1c1c1c',
+        borderRadius: '8px',
+        padding: openMenu ? '20px' : '0px',
+        overflow: 'hidden',
+        boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)',
+        transition: 'all 0.3s ease-in-out',
+        opacity: openMenu ? 1 : 0,
+        visibility: openMenu ? 'visible' : 'hidden',
+        transform: openMenu ? 'translateY(0)' : 'translateY(-10px)',
+      }}>
+        {openMenu && (
+          <ul style={{ listStyle: 'none', padding: '0', margin: '0', color: '#fff' }}>
+            <li style={{ margin: '10px 0' }}>Menu Item 1</li>
+            <li style={{ margin: '10px 0' }}>Menu Item 2</li>
+            <li style={{ margin: '10px 0' }}>Menu Item 3</li>
+          </ul>
+        )}
+      </div>
+    </div>
             <div>
                 <h1 className={styles.Title}>Bem vindo, {infosUser?.name} {infosUser?.lastname}</h1>
             </div>

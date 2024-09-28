@@ -33,7 +33,7 @@ export default function Schedule(){
             const token = localStorage.getItem('token')
             if(!token) return navigate(0)
             if(weekDay === "" && hours === "" && professor === null) return navigate(0)
-            const response = await api.post('/toapprove', {
+            const response = await api.post('/sendapprove', {
                 weekDay:weekDay,
                 hours:hours,
                 professorid:professor

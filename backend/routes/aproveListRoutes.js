@@ -6,7 +6,7 @@ const aprovelist = require('../controllers/approveListController.js')
 const Router = express.Router()
 
 Router.get('/toapprove', executionTime, dynamicAnalysis, logRequestHeaders, verifyToken, aprovelist.getListToApprove)
-Router.delete('/approved/:id',  executionTime, dynamicAnalysis, logRequestHeaders, verifyToken, aprovelist.approvedClass )
-Router.post('/sendapprove',  executionTime, dynamicAnalysis, logRequestHeaders, verifyToken, aprovelist.forApprove)
+Router.delete('/approved/:id',  executionTime, dynamicAnalysis, logRequestHeaders, verifyToken, aprovelist.approvedOrNotClass )
+Router.post('/sendapprove',  executionTime, dynamicAnalysis, logRequestHeaders, verifyToken,aprovelist.checkApproveDays, aprovelist.forApprove)
 
 module.exports = Router
