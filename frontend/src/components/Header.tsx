@@ -1,14 +1,15 @@
 import { useState, useEffect } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import api from "../services/api"
-import { aluno } from "../services/interfaces/interfaces"
+import { aluno, approveList } from "../services/interfaces/interfaces"
 import styles from "../styles/Landing.module.scss"
 import menu from "../assets/menu-svgrepo-com.svg"
-import { relative } from "path"
+import Card from "./Card"
 
 export default function Header(){
     const [infosUser, setInfosUser] = useState<aluno | null>(null)
     const [openMenu, setOpenMenu] = useState<boolean>(false)
+    const [myList, setMyList] = useState<approveList[] | null>(null)
     const navigate = useNavigate()
 
     useEffect(() => {
@@ -17,7 +18,7 @@ export default function Header(){
                 const token = localStorage.getItem('token')
                 const role = localStorage.getItem('role')
 
-                if(!token || !role) return navigate('/')
+                if(!token || !role || Number(role) !== 2) return navigate('/')
 
                 const response  = await api.get('/userinfo', {
                     headers:{
@@ -34,7 +35,29 @@ export default function Header(){
                 console.log(error)
             }
         }
+
+        const getMyApprovalList = async() => {
+            try {
+                const token = localStorage.getItem('token')
+                const role = localStorage.getItem('role')
+                if(!token || !role || Number(role) !== 2) return navigate('/')
+                
+                const response = await api.get('/toapprove', {
+                    headers:{
+                        'Content-Type': "Application/json",
+                        "x-role": role,
+                        "Authorization": `Bearer ${token}`
+                    }
+                })
+                if(response.status === 200){
+                    setMyList(response.data)
+                }
+            } catch (error) {
+                console.log(error)
+            }
+        }
         catchUserInfos()
+        getMyApprovalList()
     },[])
 
     const handleLogout = async() =>{
@@ -95,11 +118,11 @@ export default function Header(){
         transform: openMenu ? 'translateY(0)' : 'translateY(-10px)',
       }}>
         {openMenu && (
-          <ul style={{ listStyle: 'none', padding: '0', margin: '0', color: '#fff' }}>
-            <li style={{ margin: '10px 0' }}>Menu Item 1</li>
-            <li style={{ margin: '10px 0' }}>Menu Item 2</li>
-            <li style={{ margin: '10px 0' }}>Menu Item 3</li>
-          </ul>
+          <div style={{ listStyle: 'none', padding: '0', margin: '0', color: '#fff' }}>
+            {myList && myList.map((element) => (
+                <Card dia={element.dia} horario={element.horario} id={element.id} idprofessor={element.idprofessor}/>
+            ))}
+          </div>
         )}
       </div>
     </div>

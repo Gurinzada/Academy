@@ -157,7 +157,7 @@ const getUserById = async (req, res) => {
             }
         })
         if(response){
-            return res.status(200).json(response)
+            return res.status(200).json({name: response.name, lastname: response.lastname, email:response.email})
         }
     } catch {
         return res.status(500).json({message: `Server error`})

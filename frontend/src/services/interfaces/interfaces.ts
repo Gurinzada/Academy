@@ -7,11 +7,19 @@ export interface aluno{
 export interface optionsForName{
     id:number
     name:string,
-    lastname:string
+    lastname:string,
+    email:string
 }
 
 export interface classes{
     id:number,
     dia:string,
     horario:string
+}
+
+export interface approveList{
+    id:number,
+    idprofessor:number,
+    horario:string,
+    dia:string
 }

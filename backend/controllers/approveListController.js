@@ -85,20 +85,6 @@ const getListToApprove = async(req,res) => {
     }
 }
 
-const getListToApproveUser = async(req, res) => {
-    try {
-        const response = await prisma.aprovelist.findMany({
-            where:{
-                idaluno:req.userid
-            }
-        })
-        if(response){
-            return res.status(200).json(response)
-        }
-    } catch  {
-        return res.status(500).json({message:`Server error`})
-    }
-}
 
 
-module.exports = {forApprove, approvedOrNotClass,checkApproveDays, getListToApprove, getListToApproveUser}
+module.exports = {forApprove, approvedOrNotClass,checkApproveDays, getListToApprove}
