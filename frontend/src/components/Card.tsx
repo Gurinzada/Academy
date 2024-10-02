@@ -57,7 +57,7 @@ export default function Card({id,idprofessor, horario, dia}:approveList){
                     <h3>Deseja Cancelar esse pedido?</h3>
                 </div>
                 <div style={{backgroundColor:'green', width:"20%", borderRadius:"4px", textAlign:"center", border:"1px solid #111", cursor:"pointer"}}>
-                    <span onClick={cancelClass}>Sim!</span>
+                    <span onClick={cancelClass}>Sim</span>
                 </div>
             </div>
         </div>

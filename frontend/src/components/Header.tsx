@@ -92,7 +92,7 @@ export default function Header(){
     }
 
     return(
-        <header className={styles.HeaderContainer}>
+        <header className={styles.HeaderContainer} >
              <div style={{ position: "relative", zIndex: 2 }}>
       {/* Ícone do menu */}
       <img 
@@ -105,12 +105,13 @@ export default function Header(){
       {/* Menu com animação suave */}
       <div style={{
         position: 'absolute',
-        top: '90%',
-        left: '10%',
+        top: '155%',
+        left:"40%",
         background: '#1c1c1c',
         borderRadius: '8px',
+        height:'1500%',
         padding: openMenu ? '20px' : '0px',
-        overflow: 'hidden',
+        overflow: 'scroll',
         boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)',
         transition: 'all 0.3s ease-in-out',
         opacity: openMenu ? 1 : 0,
@@ -118,7 +119,7 @@ export default function Header(){
         transform: openMenu ? 'translateY(0)' : 'translateY(-10px)',
       }}>
         {openMenu && (
-          <div style={{ display:"flex", alignItems:'center', justifyContent:'center',flexDirection:'column', gap:"1rem" }}>
+          <div style={{ display:"flex", alignItems:'center', justifyContent:'center',flexDirection:'column', gap:"1rem", padding:'0.25rem' }}>
             {myList && myList.length > 0 ? myList.map((element) => (
                 <Card dia={element.dia} horario={element.horario} id={element.id} idprofessor={element.idprofessor}/>
             )): <p>Sem aulas cadastradas para aprovação!</p>}
@@ -132,7 +133,7 @@ export default function Header(){
             <nav className={styles.Navbar}>
             <p className={styles.Pnav}><Link to={"/client"} className={styles.Link}>Home</Link></p>
                 <p className={styles.Pnav}><Link to={"/profile"} className={styles.Link}>Ver perfil</Link></p>
-                <p className={styles.Pnav}><Link to={"/classes"} className={styles.Link}>Montar/Atualizar horário</Link></p>
+                <p className={styles.Pnav}><Link to={"/classes"} className={styles.Link}>Montar horário</Link></p>
             </nav>
             <div>
                 <p className={styles.Pnav} onClick={handleLogout}><a style={{cursor:'pointer'}}>Logout</a></p>
