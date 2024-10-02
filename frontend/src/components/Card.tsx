@@ -1,12 +1,11 @@
 import { useEffect, useState } from "react";
 import { approveList, optionsForName } from "../services/interfaces/interfaces";
 import api from "../services/api";
-import { useNavigate } from "react-router-dom";
+import {useNavigate } from "react-router-dom";
 
 export default function Card({id,idprofessor, horario, dia}:approveList){
     const [professorInfos, setProfessorInfos] = useState<optionsForName | null>(null)
     const navigate = useNavigate()
-
     useEffect(() => {
         const getMyTeacherName = async() => {
             try {
@@ -23,7 +22,7 @@ export default function Card({id,idprofessor, horario, dia}:approveList){
             }
         }
         getMyTeacherName()
-    })
+    },[])
 
     const cancelClass = async() => {
         try {
@@ -35,8 +34,7 @@ export default function Card({id,idprofessor, horario, dia}:approveList){
                         "Authorization": `Bearer ${token}`
                     }
                 })
-                if(response.data === 200 && response.data.approved === true){
-                    console.log(`Sucess`)
+                if(response.status === 200 && response.data.approved === true){
                     navigate(0)
                 }
         } catch (error) {
@@ -44,7 +42,7 @@ export default function Card({id,idprofessor, horario, dia}:approveList){
         }
     }
     return(
-        <div style={{backgroundColor: "#efefefef"}}>
+        <div style={{backgroundColor: "#efefefef", padding:'1rem', borderRadius:'8px', display:"flex", flexDirection:'column', gap:"2rem", alignItems:'center', justifyContent:'center', flexWrap:'wrap'}}>
             <div>
                 <h1>Aula para aprovar:</h1>
             </div>
@@ -54,11 +52,11 @@ export default function Card({id,idprofessor, horario, dia}:approveList){
                 <p>Instrutor: {professorInfos?.name} {professorInfos?.lastname}</p>
                 <p>Contato: {professorInfos?.email}</p>
             </div>
-            <div>
+            <div style={{display:"flex", flexDirection:'column', alignItems:"center", justifyContent:'center', gap:"0.55rem"}}>
                 <div>
                     <h3>Deseja Cancelar esse pedido?</h3>
                 </div>
-                <div>
+                <div style={{backgroundColor:'green', width:"20%", borderRadius:"4px", textAlign:"center", border:"1px solid #111", cursor:"pointer"}}>
                     <span onClick={cancelClass}>Sim!</span>
                 </div>
             </div>

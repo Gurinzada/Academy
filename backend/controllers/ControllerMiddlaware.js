@@ -20,7 +20,7 @@ const executionTime = async (req, res, next) => {
 }
 
 const dynamicAnalysis = async (req, res, next) => {
-    let log = `Analyzing request data types...\n`;
+    let log = `Analyzing request data types\n`;
 
     for (const key in req.body) {
         log += `${key}: ${typeof req.body[key]}\n`;
@@ -53,7 +53,7 @@ const logRequestHeaders = async (req, res, next) => {
     });
 
     const platform = os.platform()
-    logData.push(`Platarforma: ${platform}`)
+    logData.push(`Plataforma: ${platform}`)
 
     const logText = logData.join('\n') + '\n';
 

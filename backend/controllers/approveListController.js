@@ -4,16 +4,23 @@ const prisma = require('../config/prisma.js')
 const checkApproveDays = async(req,res, next) => {
     try {
         const {weekDay} = req.body
+        console.log(weekDay)
         const response = await prisma.aprovelist.findMany({
             where:{
                 idaluno:req.userid
             }
         })
-        if(response.length === 0){
+        const responseClasses = await prisma.aulas.findMany({
+            where:{
+                idaluno: req.userid
+            }
+        })
+        if(response.length === 0 && responseClasses.length === 0){
             next()
         }
         const findEqual = response.find((element) => element.dia === weekDay)
-        if(findEqual){
+        const findEqualClasses = responseClasses.find((element) => element.dia === weekDay)
+        if(findEqual || findEqualClasses){
             return res.status(403).json({message:"Not allowed"})
         }
         next()
@@ -44,12 +51,14 @@ const forApprove = async (req, res) => {
 const approvedOrNotClass = async(req,res) => {
     try {
         const {id} = req.params
+        console.log(id)
         const response = await prisma.aprovelist.delete({
             where:{
-                id:id
+                id:Number(id)
             }
         })
         if(response){
+            
             return res.status(200).json({...response, approved:true})
         } 
     } catch  {

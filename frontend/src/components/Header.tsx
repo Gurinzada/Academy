@@ -105,8 +105,8 @@ export default function Header(){
       {/* Menu com animação suave */}
       <div style={{
         position: 'absolute',
-        top: '40px',
-        right: '0px',
+        top: '90%',
+        left: '10%',
         background: '#1c1c1c',
         borderRadius: '8px',
         padding: openMenu ? '20px' : '0px',
@@ -118,10 +118,10 @@ export default function Header(){
         transform: openMenu ? 'translateY(0)' : 'translateY(-10px)',
       }}>
         {openMenu && (
-          <div style={{ listStyle: 'none', padding: '0', margin: '0', color: '#fff' }}>
-            {myList && myList.map((element) => (
+          <div style={{ display:"flex", alignItems:'center', justifyContent:'center',flexDirection:'column', gap:"1rem" }}>
+            {myList && myList.length > 0 ? myList.map((element) => (
                 <Card dia={element.dia} horario={element.horario} id={element.id} idprofessor={element.idprofessor}/>
-            ))}
+            )): <p>Sem aulas cadastradas para aprovação!</p>}
           </div>
         )}
       </div>

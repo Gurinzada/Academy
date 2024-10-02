@@ -49,6 +49,7 @@ export default function Schedule(){
                 setTimeout(() => {
                     setWorkRight(() => false)
                 },1000)
+                navigate(0)
             }
         } catch (error) {
             console.log(error)
@@ -104,6 +105,7 @@ export default function Schedule(){
                         <div className={styles.ContainerInput}>
                             <label htmlFor="nameProfessor">Selecione seu instrutor:</label>
                             <select name="" id="nameProfessor" onChange={(e) => setProfessor(Number(e.target.value))} className={styles.InputArea}>
+                                <option value="" selected disabled>Selecione o Professor:</option>
                                 {namesProfessor && namesProfessor.length > 0 ? namesProfessor.map((name) => (
                                     <>
                                         <option value={name.id}>{name.name} {name.lastname}</option>
