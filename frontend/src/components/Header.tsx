@@ -132,7 +132,6 @@ export default function Header(){
             </div>
             <nav className={styles.Navbar}>
             <p className={styles.Pnav}><Link to={"/client"} className={styles.Link}>Home</Link></p>
-                <p className={styles.Pnav}><Link to={"/profile"} className={styles.Link}>Ver perfil</Link></p>
                 <p className={styles.Pnav}><Link to={"/classes"} className={styles.Link}>Montar horário</Link></p>
             </nav>
             <div>

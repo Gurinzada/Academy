@@ -1,5 +1,6 @@
 const express = require('express')
 const cors = require('cors')
+require('dotenv').config()
 const routerUser = require('./routes/userRoutes.js')
 const routerClasses = require('./routes/classesRoutes.js')
 const routerApproveList = require('./routes/aproveListRoutes.js')
@@ -14,9 +15,13 @@ app.use(cors({
     optionsSuccessStatus: 200
 }))
 
+const port = process.env.PORT || 3000
 
-app.listen(3000, () => {
-    console.log(`We're listen to the port 3000`)
+
+
+
+app.listen(port, () => {
+    console.log(`We're listen to the port ${port}`)
 })
 
 app.use('/api', routerUser)
