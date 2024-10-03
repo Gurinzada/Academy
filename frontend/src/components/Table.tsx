@@ -12,11 +12,13 @@ export default function Table(){
         const fetchMyClasses = async () => {
             try {
                 const token = localStorage.getItem('token')
-                if(!token) return navigate(0)
+                const role = localStorage.getItem('role')
+                if(!token || !role) return navigate(0)
                 const response = await api.get('/getuserclass', {
                     headers:{
                         "Content-Type": "Application/json",
-                        "Authorization": `Bearer ${token}`
+                        "Authorization": `Bearer ${token}`,
+                        'x-role': role
                     }
                 })
                 if(response){

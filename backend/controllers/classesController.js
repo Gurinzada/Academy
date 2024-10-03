@@ -21,14 +21,27 @@ const newClass = async (req, res) => {
 
 const getUserClass = async (req, res) => {
     try {
-        const response = await prisma.aulas.findMany({
-            where:{
-                idaluno: req.userid
+        const role = req.heders['x-role']
+        if(role === 2){
+            const response = await prisma.aulas.findMany({
+                where:{
+                    idaluno: req.userid
+                }
+            })
+            if(response){
+                return res.status(200).json(response)
             }
-        })
-        if(response){
-            return res.status(200).json(response)
+        } else if(role === 3){
+            const response = await prisma.aulas.findMany({
+                where:{
+                    idprofessor: req.userid
+                }
+            })
+            if(response){
+                return res.status(200).json(response)
+            }
         }
+        
     } catch {
         return res.status(500).json({message: `Server error`})
     }

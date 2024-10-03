@@ -135,7 +135,7 @@ export default function Header(){
                 <p className={styles.Pnav}><Link to={"/classes"} className={styles.Link}>Montar horário</Link></p>
             </nav>
             <div>
-                <p className={styles.Pnav} onClick={handleLogout}><a style={{cursor:'pointer'}}>Logout</a></p>
+                <p className={styles.Pnav} onClick={handleLogout}><a className={styles.Link} style={{cursor:'pointer'}}>Logout</a></p>
             </div>
         </header>
     )

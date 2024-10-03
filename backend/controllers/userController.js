@@ -62,6 +62,7 @@ const login  = async(req, res) => {
 const loginInstructor = async (req, res) => {
     try {
         const {email, password} = req.body
+        console.log(email + " " + password)
 
         const checkEmail = await prisma.professor.findUnique({
             where:{

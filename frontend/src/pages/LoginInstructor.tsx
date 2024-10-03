@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import styles from "../styles/Register.module.scss"
 import stylesText from "../styles/Landing.module.scss"
 import wolf from "../assets/image (3).png"
@@ -8,11 +8,12 @@ import api from "../services/api";
 export default function LoginInstructor(){
     const [email, SetEmail] = useState<string>('')
     const [password, setPassword] = useState<string>('')
+    const navigate = useNavigate()
 
     const handleSubmit = async(e:React.FormEvent) => {
         e.preventDefault()
         try {
-            const response = await api.post('/loginuser', {
+            const response = await api.post('/logininstructor', {
                 email:email,
                 password:password
             }, {
@@ -24,6 +25,7 @@ export default function LoginInstructor(){
             if(response.status === 200 && response.data.auth && response.data.role === 3){
                 localStorage.setItem('token', response.data.token)
                 localStorage.setItem('role', response.data.role)
+                navigate('/clientprof')
             }
         } catch (error) {
             console.log(error)
