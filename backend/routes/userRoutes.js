@@ -10,7 +10,7 @@ router.post('/logininstructor', controllerMiddle.executionTime, controllerMiddle
 router.get('/userinfo',  controllerMiddle.executionTime, controllerMiddle.dynamicAnalysis, userController.verifyToken, userController.getUserInfo)
 router.get('/instructorname', controllerMiddle.executionTime, controllerMiddle.dynamicAnalysis, controllerMiddle.logRequestHeaders, userController.getInstructorsNames)
 router.get('/logout', controllerMiddle.executionTime, controllerMiddle.dynamicAnalysis, controllerMiddle.logRequestHeaders, userController.verifyToken, userController.logout)
-
+router.get('/student', controllerMiddle.executionTime, controllerMiddle.dynamicAnalysis, controllerMiddle.logRequestHeaders, userController.verifyToken, userController.getStudentById)
 //Uso para testes
 router.get('/all',  controllerMiddle.executionTime, controllerMiddle.dynamicAnalysis, controllerMiddle.logRequestHeaders,userController.getAllUsers)
 router.get('/professor/:id', controllerMiddle.executionTime, controllerMiddle.dynamicAnalysis, controllerMiddle.logRequestHeaders, userController.getUserById)

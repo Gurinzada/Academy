@@ -6,6 +6,7 @@ import Client from "./pages/Client";
 import LoginInstructor from "./pages/LoginInstructor";
 import ProfessorClient from "./pages/ProfessorClient";
 import Schedule from "./pages/Schedule";
+import Approve from "./pages/Approve";
 
 
 const route = createBrowserRouter([
@@ -32,6 +33,10 @@ const route = createBrowserRouter([
     {
         path:"/classes",
         element: <PrivateRoute><Schedule/></PrivateRoute>
+    },
+    {
+        path:"/approvearea",
+        element: <PrivateRoute><Approve/></PrivateRoute>
     }
 ])
 

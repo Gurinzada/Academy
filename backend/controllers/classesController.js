@@ -2,13 +2,13 @@ const prisma = require('../config/prisma')
 
 const newClass = async (req, res) => {
     try {
-        const {weekDay, hours, professorid} = req.body
+        const {weekDay, hours, idaluno} = req.body
         const response = await prisma.aulas.create({
             data:{
                 dia: weekDay,
                 horario: hours,
-                idaluno: req.userid,
-                idprofessor: professorid
+                idaluno: idaluno,
+                idprofessor: req.userid
             }
         })
         if(response){

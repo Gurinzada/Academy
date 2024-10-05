@@ -165,6 +165,21 @@ const getUserById = async (req, res) => {
     }
 }
 
+const getStudentById = async (req,res) => {
+    try {
+        const names = []
+        const response = await prisma.aluno.findMany()
+        if(response){
+            response.forEach((element) => {
+                names.push({id: element.id, name: element.name, lastname: element.lastname})
+            })
+            return res.status(200).json(names)
+        }
+    } catch {
+        return res.status(500).json({message:`Server error`})
+    }
+}
+
 const getInstructorsNames = async (req, res) => {
     try {
         const names = []
@@ -209,7 +224,7 @@ const logout = async (req,res) => {
 
 module.exports = {
     login, newUser, 
-    verifyToken, 
+    verifyToken,getStudentById, 
     getUserInfo, getAllUsers, 
     loginInstructor,getUserById, 
     getInstructorsNames, logout}

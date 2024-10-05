@@ -20,6 +20,7 @@ export interface classes{
 export interface approveList{
     id:number,
     idprofessor:number,
+    idaluno:number
     horario:string,
     dia:string
 }
