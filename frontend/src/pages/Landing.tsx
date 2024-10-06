@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import styles from "../styles/Landing.module.scss"
 import lion from "../assets/image (2).png"
@@ -8,6 +8,18 @@ export default function Landing(){
     const [email, setEmail] = useState<string>('')
     const [password, setPassword] = useState<string>()
     const navigate = useNavigate()
+
+    useEffect(() => {
+        const token = localStorage.getItem('token')
+        const role = localStorage.getItem('role')
+        if(token && Number(role) === 2){
+            navigate('/client')
+        } else if(token && Number(role) === 3){
+            navigate('/clientprof')
+        } else{
+            console.log(`No token available`)
+        }
+    },[])
 
     const login = async (e:React.FormEvent) => {
         e.preventDefault()

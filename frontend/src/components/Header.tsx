@@ -5,6 +5,9 @@ import { aluno, approveList } from "../services/interfaces/interfaces"
 import styles from "../styles/Landing.module.scss"
 import menu from "../assets/menu-svgrepo-com.svg"
 import Card from "./Card"
+import io from "socket.io-client"
+
+const socket = io('http://localhost:3000')
 
 export default function Header(){
     const [infosUser, setInfosUser] = useState<aluno | null>(null)
@@ -51,6 +54,11 @@ export default function Header(){
                 })
                 if(response.status === 200){
                     setMyList(response.data)
+                    if(response.data.length > 0){
+                        response.data.forEach((approval:approveList) => {
+                            socket.emit('joinRoom', approval.id)
+                        })
+                    }
                 }
             } catch (error) {
                 console.log(error)
@@ -58,6 +66,8 @@ export default function Header(){
         }
         catchUserInfos()
         getMyApprovalList()
+
+        
     },[])
 
     const handleLogout = async() =>{
@@ -121,7 +131,7 @@ export default function Header(){
         {openMenu && (
           <div style={{ display:"flex", alignItems:'center', justifyContent:'center',flexDirection:'column', gap:"1rem", padding:'0.25rem' }}>
             {myList && myList.length > 0 ? myList.map((element) => (
-                <Card dia={element.dia} horario={element.horario} id={element.id} idprofessor={element.idprofessor}/>
+                <Card dia={element.dia} horario={element.horario} id={element.id} idprofessor={element.idprofessor} idaluno={0}/>
             )): <p>Sem aulas cadastradas para aprovação!</p>}
           </div>
         )}

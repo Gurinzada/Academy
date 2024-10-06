@@ -21,8 +21,8 @@ const newClass = async (req, res) => {
 
 const getUserClass = async (req, res) => {
     try {
-        const role = req.heders['x-role']
-        if(role === 2){
+        const role = req.headers[('x-role')]
+        if(Number(role) === 2){
             const response = await prisma.aulas.findMany({
                 where:{
                     idaluno: req.userid
@@ -31,7 +31,7 @@ const getUserClass = async (req, res) => {
             if(response){
                 return res.status(200).json(response)
             }
-        } else if(role === 3){
+        } else if(Number(role) === 3){
             const response = await prisma.aulas.findMany({
                 where:{
                     idprofessor: req.userid
@@ -42,7 +42,8 @@ const getUserClass = async (req, res) => {
             }
         }
         
-    } catch {
+    } catch(error) {
+        console.log(error)
         return res.status(500).json({message: `Server error`})
     }
 }

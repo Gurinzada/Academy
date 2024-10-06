@@ -21,7 +21,7 @@ export default function Table(){
                         'x-role': role
                     }
                 })
-                if(response){
+                if(response.status === 200){
                     setClasses(() => response.data)
                 }
             } catch (error) {

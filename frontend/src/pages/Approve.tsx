@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom"
 import HeaderProfessor from "../components/HeaderProfessor"
 import {approveList, optionsForName } from "../services/interfaces/interfaces"
 import api from "../services/api"
+import styles from "../styles/Approve.module.scss"
 
 export default function Approve(){
     const [approveList, setApproveList] = useState<approveList[] | null>(null)
@@ -65,6 +66,11 @@ export default function Approve(){
                     weekDay: weekDay,
                     hours: hours,
                     idaluno:idaluno
+                },{
+                    headers:{
+                        "Authorization": `Bearer ${token}`,
+                        "Content-Type": "Application/json"
+                    }
                 })
                 if(response.status === 200){
                     const toExclude = await api.delete(`/approvedornot/${idExclude}`, {
@@ -111,8 +117,8 @@ export default function Approve(){
     return(
         <div>
             <HeaderProfessor/>
-            <main>
-                <section>
+            <main className={styles.MainAreaCard}>
+                <section className={styles.sectionAreaCard}>
                     {approveList && approveList.length > 0 ? approveList.map((element) => (
                         <div>
                             <div>
@@ -125,7 +131,7 @@ export default function Approve(){
                                     <>{user.id === element.idaluno ? <>{`${user.name} ${user.lastname}`}</> : <>Usúario não identificado!</>}</>
                                 )) : null}</p>
                                 <p>Contato: {studentInfos && studentInfos.length > 0 ? studentInfos.map((user) => (
-                                    <>{user.id === element.idaluno ? <>{`${user.email}`}</> : <>Email não identificado</>}</>
+                                    <>{user.id === element.idaluno ? <>{user.email}</> : <>Email não identificado</>}</>
                                 )) : null}</p>
                             </div>
                             <div>

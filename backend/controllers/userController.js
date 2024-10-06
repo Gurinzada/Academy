@@ -171,7 +171,7 @@ const getStudentById = async (req,res) => {
         const response = await prisma.aluno.findMany()
         if(response){
             response.forEach((element) => {
-                names.push({id: element.id, name: element.name, lastname: element.lastname})
+                names.push({id: element.id, name: element.name, lastname: element.lastname, email: element.email})
             })
             return res.status(200).json(names)
         }

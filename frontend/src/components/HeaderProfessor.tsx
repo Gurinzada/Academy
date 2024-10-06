@@ -55,7 +55,7 @@ export default function HeaderProfessor(){
     return(
         <header className={styles.HeaderContainer}>
                 <div>
-                    <h1 className={styles.Title}>Bem vindo Professor, {professorInfos?.name} {professorInfos?.lastname}</h1>
+                    <h1 className={styles.Title}>Bem vindo, Professor {professorInfos?.name} {professorInfos?.lastname}</h1>
                 </div>
                 <nav className={styles.Navbar}>
                     <p className={styles.Pnav}><Link className={styles.Link} to={'/clientprof'}>Home</Link></p>

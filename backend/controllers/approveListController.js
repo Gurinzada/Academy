@@ -51,8 +51,6 @@ const forApprove = async (req, res) => {
 const approvedOrNotClass = async(req,res) => {
     try {
         const {id} = req.params
-        const role = req.headers['x-role']
-        if(Number(role) !== 3) return res.status(403).json({message: `Not allowed`})
         console.log(id)
         const response = await prisma.aprovelist.delete({
             where:{
