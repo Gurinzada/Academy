@@ -5,9 +5,6 @@ import { aluno, approveList } from "../services/interfaces/interfaces"
 import styles from "../styles/Landing.module.scss"
 import menu from "../assets/menu-svgrepo-com.svg"
 import Card from "./Card"
-import io from "socket.io-client"
-
-const socket = io('http://localhost:3000')
 
 export default function Header(){
     const [infosUser, setInfosUser] = useState<aluno | null>(null)
@@ -54,11 +51,6 @@ export default function Header(){
                 })
                 if(response.status === 200){
                     setMyList(response.data)
-                    if(response.data.length > 0){
-                        response.data.forEach((approval:approveList) => {
-                            socket.emit('joinRoom', approval.id)
-                        })
-                    }
                 }
             } catch (error) {
                 console.log(error)

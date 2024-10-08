@@ -120,11 +120,11 @@ export default function Approve(){
             <main className={styles.MainAreaCard}>
                 <section className={styles.sectionAreaCard}>
                     {approveList && approveList.length > 0 ? approveList.map((element) => (
-                        <div>
-                            <div>
+                        <div className={styles.ContainerCard}>
+                            <div className={styles.ContainerText}>
                                 <h1>Aula para aprovar:</h1>
                             </div>
-                            <div>
+                            <div className={styles.ContainerText}>
                                 <p>Dia: {element.dia}</p>
                                 <p>Turno: {element.horario}</p>
                                 <p>Aluno: {studentInfos && studentInfos.length > 0 ? studentInfos.map((user) => (
@@ -134,11 +134,11 @@ export default function Approve(){
                                     <>{user.id === element.idaluno ? <>{user.email}</> : <>Email não identificado</>}</>
                                 )) : null}</p>
                             </div>
-                            <div>
-                                <div>
+                            <div className={styles.AreaAcceptOrNot}>
+                                <div className={styles.ContainerText}>
                                     <h3>Aceitar ou recusar?</h3>
                                 </div>
-                                <div>
+                                <div className={styles.BntArea}>
                                     <p onClick={() => Accept(element.dia, element.horario, element.idaluno, element.id)}>Aceitar</p>
                                     <p onClick={() => recuse(element.id)}>Recusar</p>
                                 </div>

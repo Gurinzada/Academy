@@ -29,6 +29,7 @@ export default function Table(){
             }
         }
         fetchMyClasses()
+        console.log(`Ola`)
     },[])
     return(
         <table className={styles.TableHours}>
