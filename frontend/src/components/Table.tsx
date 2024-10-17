@@ -130,6 +130,27 @@ export default function Table(){
                             )) : null}</td>
                         </tr>
                         <tr>
+                            <td>16h às 18h</td>
+                            <td>{classes && classes.length > 0 ? classes.map((myclass) => (
+                                <>{myclass.dia === "Seg" && myclass.horario === "16:00 às 18:00" ? <p className={styles.P}>Você tem aula hoje!</p> : null}</>
+                            )) : null}</td>
+                            <td>{classes && classes.length > 0 ? classes.map((myclass) => (
+                                <>{myclass.dia === "Ter" && myclass.horario === "16:00 às 18:00" ? <p className={styles.P}>Você tem aula hoje!</p> : null}</>
+                            )) : null}</td>
+                            <td>{classes && classes.length > 0 ? classes.map((myclass) => (
+                                <>{myclass.dia === "Qua" && myclass.horario === "16:00 às 18:00" ? <p className={styles.P}>Você tem aula hoje!</p> : null}</>
+                            )) : null}</td>
+                            <td>{classes && classes.length > 0 ? classes.map((myclass) => (
+                                <>{myclass.dia === "Qui" && myclass.horario === "16:00 às 18:00" ? <p className={styles.P}>Você tem aula hoje!</p> : null}</>
+                            )) : null}</td>
+                            <td>{classes && classes.length > 0 ? classes.map((myclass) => (
+                                <>{myclass.dia === "Sex" && myclass.horario === "16:00 às 18:00" ? <p className={styles.P}>Você tem aula hoje!</p> : null}</>
+                            )) : null}</td>
+                            <td>{classes && classes.length > 0 ? classes.map((myclass) => (
+                                <>{myclass.dia === "Sab" && myclass.horario === "16:00 às 18:00" ? <p className={styles.P}>Você tem aula hoje!</p> : null}</>
+                            )) : null}</td>
+                        </tr>
+                        <tr>
                             <td>18h às 20h</td>
                             <td>{classes && classes.length > 0 ? classes.map((myclass) => (
                                 <>{myclass.dia === "Seg" && myclass.horario === "18:00 às 20:00" ? <p className={styles.P}>Você tem aula hoje!</p> : null}</>

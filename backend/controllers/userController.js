@@ -62,7 +62,6 @@ const login  = async(req, res) => {
 const loginInstructor = async (req, res) => {
     try {
         const {email, password} = req.body
-        console.log(email + " " + password)
 
         const checkEmail = await prisma.professor.findUnique({
             where:{
@@ -125,6 +124,15 @@ const getUserInfo = async (req, res) => {
                 }
             })
 
+            if(response){
+                return res.status(200).json({email: response.email, name: response.name, lastname:response.lastname})
+            }
+        } else if(Number(role) === 1){
+            const response = await prisma.aluno.findUnique({
+                where:{
+                    id:req.userid
+                }
+            })
             if(response){
                 return res.status(200).json({email: response.email, name: response.name, lastname:response.lastname})
             }

@@ -7,6 +7,7 @@ require('dotenv').config()
 const routerUser = require('./routes/userRoutes.js')
 const routerClasses = require('./routes/classesRoutes.js')
 const routerApproveList = require('./routes/aproveListRoutes.js')
+const routerAdmin = require('./routes/AdminRoutes.js')
 
 
 const app = express()
@@ -33,3 +34,4 @@ app.listen(port, () => {
 app.use('/api', routerUser)
 app.use('/api', routerClasses)
 app.use('/api', routerApproveList)
+app.use('/api', routerAdmin)
