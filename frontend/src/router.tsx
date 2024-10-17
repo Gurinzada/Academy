@@ -8,6 +8,7 @@ import ProfessorClient from "./pages/ProfessorClient";
 import Schedule from "./pages/Schedule";
 import Approve from "./pages/Approve";
 import LoginAdmin from "./pages/LoginAdmin";
+import Admin from "./pages/Admin";
 
 
 const route = createBrowserRouter([
@@ -42,6 +43,10 @@ const route = createBrowserRouter([
     {
         path:"/admin",
         element: <LoginAdmin/>
+    },
+    {
+        path: "/adminarea",
+        element: <PrivateRoute><Admin/></PrivateRoute>
     }
 ])
 

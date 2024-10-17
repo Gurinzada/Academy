@@ -26,5 +26,42 @@ const LoginAdmin = async(req, res) => {
     }
 }
 
+const getAllUsers = async (req, res) => {
+    try {
+        const role = Number(req.headers['x-role'])
+        if(role !== 1 || !role) return res.status(403).json("You must provide an role")
+        const response = await prisma.aluno.findMany({
+            where:{
+                NOT:{
+                    id:req.userid
+                }
+            }
+        })
+        if(response){
+            return res.status(200).json(response)
+        }
+    } catch {
+        return res.status(500).json({message: "Server Error"})
+    }
+}
 
-module.exports = {LoginAdmin}
+const deleteAnUser = async(req, res) => {
+    const {id} = req.params
+    const role = Number(req.headers['x-role'])
+        if(role !== 1 || !role) return res.status(403).json("You must provide an role")
+    try {
+        const response = await prisma.aluno.delete({
+            where:{
+                id: id
+            }
+        })
+        if(response){
+            return res.status(200).json({...response, deleted: true})
+        }
+    } catch {
+        res.status(500).json({message: "Server Error"})
+    }
+}
+
+
+module.exports = {LoginAdmin, getAllUsers, deleteAnUser}
