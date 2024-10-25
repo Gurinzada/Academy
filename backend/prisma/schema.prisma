@@ -65,3 +65,9 @@ model aprovelist{
   horario String
   dia String
 }
+
+model blackList{
+  id Int @id @default(autoincrement())
+  email String
+  date DateTime
+}
