@@ -24,3 +24,12 @@ export interface approveList{
     horario:string,
     dia:string
 }
+
+export interface user{
+    id:number
+    name:string,
+    lastname:string,
+    email:string,
+    password:string,
+    roleid:number
+}

@@ -73,13 +73,17 @@ const deleteAnUser = async(req, res) => {
 const updateAnUser = async(req, res) => {
     const {id} = req.params
     const {password} = req.body
+    let salt = 10
+    const newSalt = await bcrypt.genSalt(salt)
+    const hashPassword = await bcrypt.hash(password, newSalt)
+    password = hashPassword
     try {
         const response = await prisma.aluno.update({
             where:{
                 id: id
             },
             data:{
-                password:password
+                password: password
             }
         })
 

@@ -3,8 +3,6 @@ const prisma = require('../config/prisma.js')
 
 const newBlackList = async(req,res) => {
     const {email} = req.body
-    const role = req.headers['x-role']
-    if(Number(role) !== 1) return res.status(403).json(`You must provide an role`)
     try {
         const response = await prisma.blackList.create({
             data:{
@@ -22,8 +20,6 @@ const newBlackList = async(req,res) => {
 }
 
 const getAllBlackLists = async(req, res) => {
-    const role = req.headers['x-role']
-    if(Number(role) !== 1) return res.status(403).json(`You must provide an role`)
     try {
         const response = await prisma.blackList.findMany()
         if(response){

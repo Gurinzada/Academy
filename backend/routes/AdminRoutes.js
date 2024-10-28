@@ -6,9 +6,9 @@ const Router = express.Router()
 
 Router.post('/adminlogin', admin.LoginAdmin)
 Router.get('/adminalluser', verifyToken, admin.checkRoleAdmin, admin.getAllUsers)
-Router.delete('/deleteuser', verifyToken, admin.checkRoleAdmin, admin.deleteAnUser)
+Router.delete('/deleteuser/:id', verifyToken, admin.checkRoleAdmin, admin.deleteAnUser)
 Router.get('/admininstructors', verifyToken, admin.checkRoleAdmin, admin.getAllInstructos)
-Router.patch('/adminupdateuser', verifyToken,admin.checkRoleAdmin,  admin.updateAnUser)
+Router.patch('/adminupdateuser/:id', verifyToken,admin.checkRoleAdmin,  admin.updateAnUser)
 Router.get('/adminAllClasses', verifyToken, admin.checkRoleAdmin, admin.getAllClasses)
 
 module.exports = Router

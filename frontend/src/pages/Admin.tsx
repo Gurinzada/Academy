@@ -2,17 +2,7 @@ import { useEffect, useState } from "react";
 import HeaderAdmin from "../components/HeaderAdmin";
 import { useNavigate } from "react-router-dom";
 import api from "../services/api";
-
-
-
-interface user{
-    id:number
-    name:string,
-    lastname:string,
-    email:string,
-    password:string,
-    roleid:number
-}
+import { user } from "../services/interfaces/interfaces";
 
 interface myInstructors{
     id:number,
@@ -152,6 +142,11 @@ export default function Admin(){
                                 <p>{BlackList?.lengthBlackList}</p>
                             </div>
                         </div>
+                    </div>
+                </section>
+                <section>
+                    <div>
+                        <h1>Usuários Ativos</h1>
                     </div>
                 </section>
             </main>
