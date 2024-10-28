@@ -2,8 +2,7 @@ import { useEffect, useState } from "react";
 import HeaderAdmin from "../components/HeaderAdmin";
 import { useNavigate } from "react-router-dom";
 import api from "../services/api";
-import { CategoryScale, Chart } from "chart.js";
-import { Bar } from "react-chartjs-2";
+
 
 
 interface user{
@@ -15,10 +14,23 @@ interface user{
     roleid:number
 }
 
-Chart.register(CategoryScale)
+interface myInstructors{
+    id:number,
+    name:string,
+    lastname:string,
+    email:string,
+    passoword:string,
+    roleid:number
+}
+
+interface BlackLists{
+    lengthBlackList:number
+}
 
 export default function Admin(){
-    const [myUsers, setMyUsers] = useState<user[] | null>()
+    const [myUsers, setMyUsers] = useState<user[] | null>(null)
+    const [myInstructors, setmyInstructors] = useState<myInstructors[] | null>(null)
+    const [BlackList, setMyBlackList] = useState<BlackLists | null>(null)
     const navigate = useNavigate()
 
     useEffect(() => {
@@ -46,11 +58,65 @@ export default function Admin(){
                 }
             } catch (error) {
                 console.log(`Something goes wrong`)
-                navigate(0)
             }
         }
 
+        const getAllInstructors = async() => {
+            try {
+                const token = localStorage.getItem('token')
+                const role = localStorage.getItem('role')
+
+                if(!role || !token || Number(role) !== 1){
+                    localStorage.removeItem('token')
+                    localStorage.removeItem('role')
+                    return navigate('/')
+                }
+
+                const response = await api.get('/admininstructors', {
+                    headers:{
+                        "Content-Type": "Application/json",
+                        'Authorization': `Bearer ${token}`,
+                        "x-role": role
+                    }
+                })
+
+                if(response.status === 200){
+                    setmyInstructors(response.data)
+                }
+            } catch (error) {
+                console.log(`Something goes wrong`)
+            }
+        }
+
+        const getBlackListNumbers = async() => {
+            const token = localStorage.getItem('token')
+            const role = localStorage.getItem('role')
+            if(!role || Number(role) !== 1 || !token){
+                localStorage.removeItem('token')
+                localStorage.removeItem('role')
+                return navigate('/')
+            }
+
+            try {
+                const response = await api.get('/allblacklists', {
+                    headers:{
+                        'Content-Type': "Application/json",
+                        'Authorization': `Bearer ${token}`,
+                        "x-role": role
+                    }
+                })
+                if(response.status === 200){
+                    setMyBlackList(response.data)
+                }
+            } catch {
+                console.log(`Something goes wrong`)
+            }
+
+        }
+
         getAllUsers()
+        getAllInstructors()
+        getBlackListNumbers()
     },[])
 
     return(
@@ -59,11 +125,32 @@ export default function Admin(){
             <main>
                 <section>
                     <div>
-                        <h1>Confira o número de usuários</h1>
+                        <h1>Quadro de controle:</h1>
                     </div>
                     <div>
                         <div>
-                            {myUsers?.length}
+                            <div>
+                                <h3>Número de Alunos cadastrados:</h3>
+                            </div>
+                            <div>
+                                <p>{myUsers?.length}</p>
+                            </div>
+                        </div>
+                        <div>
+                            <div>
+                                <h3>Número de Professores Ativos:</h3>
+                            </div>
+                            <div>
+                                <p>{myInstructors?.length}</p>
+                            </div>
+                        </div>
+                        <div>
+                            <div>
+                                <h3>Número das BlackLists:</h3>
+                            </div>
+                            <div>
+                                <p>{BlackList?.lengthBlackList}</p>
+                            </div>
                         </div>
                     </div>
                 </section>

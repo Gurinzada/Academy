@@ -28,8 +28,6 @@ const LoginAdmin = async(req, res) => {
 
 const getAllUsers = async (req, res) => {
     try {
-        const role = Number(req.headers['x-role'])
-        if(role !== 1 || !role) return res.status(403).json("You must provide an role")
         const response = await prisma.aluno.findMany({
             where:{
                 NOT:{
@@ -45,10 +43,19 @@ const getAllUsers = async (req, res) => {
     }
 }
 
+const getAllInstructos = async (req, res) => {
+    try {
+        const response = await prisma.professor.findMany()
+        if(response){
+            return res.status(200).json(response)
+        }
+    } catch {
+        return res.status(500).json({message: "Error Server"})
+    }
+}
+
 const deleteAnUser = async(req, res) => {
     const {id} = req.params
-    const role = Number(req.headers['x-role'])
-        if(role !== 1 || !role) return res.status(403).json("You must provide an role")
     try {
         const response = await prisma.aluno.delete({
             where:{
@@ -59,9 +66,53 @@ const deleteAnUser = async(req, res) => {
             return res.status(200).json({...response, deleted: true})
         }
     } catch {
-        res.status(500).json({message: "Server Error"})
+        return res.status(500).json({message: "Server Error"})
+    }
+}
+
+const updateAnUser = async(req, res) => {
+    const {id} = req.params
+    const {password} = req.body
+    try {
+        const response = await prisma.aluno.update({
+            where:{
+                id: id
+            },
+            data:{
+                password:password
+            }
+        })
+
+        if(response){
+            return res.status(200).json({updated: true, ...response})
+        }
+    } catch {
+        return res.status(500).json({message: "Server Error"})
+    }
+}
+
+const getAllClasses = async(req, res) => {
+    try {
+        const response = await prisma.aulas.findMany()
+        if(response){
+            return res.status(200).json(response)
+        }
+    } catch {
+        return res.status(500).json({message:"Server Error"})
+    }
+}
+
+const checkRoleAdmin = async(req, res, next) => {
+    try {
+        const role = req.headers['x-role']
+        if(!role || Number(role) !== 1) return res.status(403).json(`You need to provide a token`)
+
+            next()
+
+    } catch {
+        return res.status(500).json({message:`Server error`})
     }
 }
 
 
-module.exports = {LoginAdmin, getAllUsers, deleteAnUser}
+module.exports = {LoginAdmin, getAllUsers, deleteAnUser, getAllInstructos, updateAnUser, checkRoleAdmin, getAllClasses}
