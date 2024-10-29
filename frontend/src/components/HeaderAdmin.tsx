@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import { aluno } from "../services/interfaces/interfaces"
 import { useNavigate } from "react-router-dom"
 import api from "../services/api"
+import styles from "../styles/Landing.module.scss"
 
 export default function HeaderAdmin(){
 
@@ -60,10 +61,10 @@ export default function HeaderAdmin(){
     }
 
     return(
-        <header>
+        <header className={styles.HeaderContainer}>
             <div>
-                <h1>Bem vindo, {userInfo?.name} {userInfo?.lastname}</h1>
-                <p>Confira o seu painel abaixo</p>
+                <h1 className={styles.Title}>Bem vindo, {userInfo?.name} {userInfo?.lastname}</h1>
+                <p className={styles.Pnav} style={{paddingLeft: "0.35rem"}}>Confira o seu painel abaixo</p>
             </div>
             <div>
                 <p onClick={handleLogout}><a style={{cursor:"pointer"}}>Logout</a></p>

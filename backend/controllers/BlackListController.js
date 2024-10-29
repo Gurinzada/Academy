@@ -12,7 +12,7 @@ const newBlackList = async(req,res) => {
         })
 
         if(response){
-            return res.status(200).json(response)
+            return res.status(200).json({...response, created: true})
         }
     } catch {
         return res.status(500).json({message: "Server error"})

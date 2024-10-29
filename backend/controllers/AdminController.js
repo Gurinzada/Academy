@@ -59,9 +59,10 @@ const deleteAnUser = async(req, res) => {
     try {
         const response = await prisma.aluno.delete({
             where:{
-                id: id
+                id: Number(id)
             }
         })
+        
         if(response){
             return res.status(200).json({...response, deleted: true})
         }

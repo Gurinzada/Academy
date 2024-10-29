@@ -59,9 +59,9 @@ model role{
 model aprovelist{
   id Int @id @default(autoincrement())
   idaluno Int
-  aluno aluno @relation(fields: [idaluno], references: [id])
+  aluno aluno @relation(fields: [idaluno], references: [id], onDelete: Cascade)
   idprofessor Int
-  professor professor @relation(fields: [idprofessor], references: [id])
+  professor professor @relation(fields: [idprofessor], references: [id], onDelete: Cascade)
   horario String
   dia String
 }

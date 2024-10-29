@@ -3,6 +3,7 @@ import HeaderAdmin from "../components/HeaderAdmin";
 import { useNavigate } from "react-router-dom";
 import api from "../services/api";
 import { user } from "../services/interfaces/interfaces";
+import CardAdmin from "../components/CardAdmin";
 
 interface myInstructors{
     id:number,
@@ -147,6 +148,11 @@ export default function Admin(){
                 <section>
                     <div>
                         <h1>Usuários Ativos</h1>
+                    </div>
+                    <div>
+                        {myUsers && myUsers.length > 0 ? myUsers.map((item) => (
+                            <CardAdmin email={item.email} id={item.id} lastname={item.lastname} name={item.name} password={item.password} roleid={item.roleid}/>
+                        )) : "Nenhum usuário Cadastrado"}
                     </div>
                 </section>
             </main>
