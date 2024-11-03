@@ -31,7 +31,7 @@ export default function RegisterStudent(){
     }
     return(
         <div className={styles.Container}>
-            <form action="" className={styles.FormContainer} onSubmit={handleSubmit}>
+            <form action="" className={styles.FormContainer} onSubmit={handleSubmit} data-cy="register-form">
                 <div className={styles.Welcome}>
                     <h1 className={stylesText.Title}>Bem-vindo</h1>
                     <img src={wolf} alt="" className={styles.HeroImg}/>
@@ -39,23 +39,23 @@ export default function RegisterStudent(){
                 <div className={styles.ContainerInputs}>
                     <div className={styles.GeneralInputs}>
                         <label className={styles.Label} htmlFor="email">Email</label>
-                        <input type="email" name="" id="email"  className={styles.Input} value={email} onChange={(e) => SetEmail(e.target.value)}/>
+                        <input type="email" name="" id="email"  className={styles.Input} value={email} onChange={(e) => SetEmail(e.target.value)} data-cy="email-input"/>
                     </div>
                     <div className={styles.GeneralInputs}>
                         <label htmlFor="password" className={styles.Label}>Senha</label>
-                        <input type="password" id="password"  className={styles.Input} value={password} onChange={(e) => setPassword(e.target.value)}/>
+                        <input type="password" id="password"  className={styles.Input} value={password} onChange={(e) => setPassword(e.target.value)} data-cy="password-input"/>
                     </div>
                     <div className={styles.GeneralInputs}>
                         <label className={styles.Label} htmlFor="firstname">Nome</label>
-                        <input type="text" name="" id="firstname" className={styles.Input} value={name} onChange={(e) => setName(e.target.value)}/>
+                        <input type="text" name="" id="firstname" className={styles.Input} value={name} onChange={(e) => setName(e.target.value)} data-cy="name-input"/>
                     </div>
                     <div className={styles.GeneralInputs}>
                         <label className={styles.Label} htmlFor="secondname">Sobrenome</label>
-                        <input type="text" id="secondname"  className={styles.Input} value={lastname} onChange={(e) => setLastName(e.target.value)}/>
+                        <input type="text" id="secondname"  className={styles.Input} value={lastname} onChange={(e) => setLastName(e.target.value)} data-cy="lastname-input"/>
                     </div>
                     <div className={styles.ContainerBnt}>
-                        <button className={styles.BntRegister}>Cadastrar</button>
-                        <Link to={'/'}>Voltar</Link>
+                        <button className={styles.BntRegister} data-cy="bnt-register">Cadastrar</button>
+                        <Link to={'/'} data-cy="go-back-home">Voltar</Link>
                     </div>
                 </div>
             </form>

@@ -52,7 +52,7 @@ export default function Landing(){
                     <p className={styles.Pnav}><a href="#whoweare" className={styles.Link}>Quem nós somos</a></p>
                     <p className={styles.Pnav}><a href="#health" className={styles.Link}>Saúde e Benefícios</a></p>
                     <p className={styles.Pnav}><a href="#contacts" className={styles.Link}>Contatos</a></p>
-                    <p className={styles.Pnav}><Link to={'/register'} className={styles.Link}>Registre-se</Link></p>
+                    <p className={styles.Pnav}><Link to={'/register'} className={styles.Link} data-cy="go-register">Registre-se</Link></p>
                 </nav>
                 <form className={styles.LoginArea} onSubmit={login}>
                     <div className={styles.TitleForLogin}>

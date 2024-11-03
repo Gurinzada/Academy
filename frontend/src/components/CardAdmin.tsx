@@ -32,7 +32,11 @@ export default function CardAdmin({id, name, lastname, email, password, roleid}:
         const token = localStorage.getItem('token')
         const role = localStorage.getItem('role')
 
-        if(!token || !role || Number(role) !== 1) return navigate(0)
+        if(!token || !role || Number(role) !== 1) {
+            localStorage.removeItem('token')
+            localStorage.removeItem('role')
+            navigate('/')
+        }
 
             const response = await api.post('/newblacklist', {
                 email:emailUser
