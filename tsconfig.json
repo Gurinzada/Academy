@@ -1,0 +1,16 @@
+{
+    "compilerOptions": {
+      "target": "es6",
+      "module": "commonjs",
+      "lib": ["es6", "dom"],
+      "types": ["cypress"],
+      "esModuleInterop": true,
+      "skipLibCheck": true,
+      "baseUrl": "./",  // Adicione esta linha
+      "paths": {
+        "@src/*": ["frontend/src/*"] // Exemplo de configuração de paths (opcional)
+      }
+    },
+    "include": ["cypress/**/*.ts", "frontend/src/**/*.ts"]
+  }
+  
