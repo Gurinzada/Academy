@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import api from "../services/api";
 import { user } from "../services/interfaces/interfaces";
 import CardAdmin from "../components/CardAdmin";
+import styles from "../styles/Admin.module.scss"
 
 interface myInstructors{
     id:number,
@@ -111,45 +112,45 @@ export default function Admin(){
     },[])
 
     return(
-        <div>
+        <div className={styles.Container}>
             <HeaderAdmin/>
-            <main>
-                <section>
+            <main className={styles.BodyArea}>
+                <section className={styles.CheckInfos}>
                     <div>
-                        <h1>Quadro de controle:</h1>
+                        <h1 className={styles.Title}>Quadro de controle:</h1>
                     </div>
-                    <div>
-                        <div>
+                    <div className={styles.CardAreas}>
+                        <div className={styles.Card}>
                             <div>
-                                <h3>Número de Alunos cadastrados:</h3>
+                                <h3 className={styles.H3}>Número de Alunos cadastrados:</h3>
                             </div>
                             <div>
-                                <p>{myUsers?.length}</p>
-                            </div>
-                        </div>
-                        <div>
-                            <div>
-                                <h3>Número de Professores Ativos:</h3>
-                            </div>
-                            <div>
-                                <p>{myInstructors?.length}</p>
+                                <p className={styles.P}>{myUsers?.length}</p>
                             </div>
                         </div>
-                        <div>
+                        <div className={styles.Card}>
                             <div>
-                                <h3>Número das BlackLists:</h3>
+                                <h3 className={styles.H3}>Número de Professores Ativos:</h3>
                             </div>
                             <div>
-                                <p>{BlackList?.lengthBlackList}</p>
+                                <p className={styles.P}>{myInstructors?.length}</p>
+                            </div>
+                        </div>
+                        <div className={styles.Card}>
+                            <div>
+                                <h3 className={styles.H3}>Número das BlackLists:</h3>
+                            </div>
+                            <div>
+                                <p className={styles.P}>{BlackList?.lengthBlackList}</p>
                             </div>
                         </div>
                     </div>
                 </section>
-                <section>
+                <section className={styles.UsersCards}>
                     <div>
-                        <h1>Usuários Ativos</h1>
+                        <h1 className={styles.Title}>Usuários Ativos</h1>
                     </div>
-                    <div style={{display:"flex", flexWrap:'wrap', justifyContent:'flex-start', alignItems:'center', gap:'2rem', marginLeft:'2rem'}}>
+                    <div style={{display:"flex", flexWrap:'wrap', justifyContent:'center', alignItems:'center', gap:'2rem'}}>
                         {myUsers && myUsers.length > 0 ? myUsers.map((item) => (
                             <CardAdmin email={item.email} id={item.id} lastname={item.lastname} name={item.name} password={item.password} roleid={item.roleid}/>
                         )) : "Nenhum usuário Cadastrado"}

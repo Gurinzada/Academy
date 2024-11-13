@@ -1,0 +1,69 @@
+@import './Mixings.scss';
+
+.Container{
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+}
+
+.BodyArea{
+    align-items: flex-start;
+    display: flex;
+    flex-direction: column;
+    gap: 3.5rem;
+    justify-content: baseline;
+}
+
+.CheckInfos{
+    align-items: center;
+    border-bottom: 1px solid #1C1C1C;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    gap: 5rem;
+    padding: 0.5rem;
+    width: 100%;
+}
+
+.Title{
+    @include text(#1C1C1C, 3rem, "Montserrat", bold);
+}
+
+.CardAreas{
+    align-items: center;
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.Card{
+    align-items: center;
+    background-color: #2C2C2C;
+    border: 1px solid #1C1C1C;
+    border-radius: 4px;
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    height: 15rem;
+    padding: 1rem;
+    text-align: center;
+    width: 15rem;
+}
+
+.H3{
+    @include text(#2E8B57, 1.1rem, "Montserrat", 600)
+}
+
+.P{
+    color: #efefef;
+    font-size: 2rem;
+    font-family: "Roboto";
+}
+
+.UsersCards{
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    gap: 5rem;
+}
