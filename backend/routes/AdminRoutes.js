@@ -10,5 +10,7 @@ Router.delete('/deleteuser/:id', verifyToken, admin.checkRoleAdmin, admin.delete
 Router.get('/admininstructors', verifyToken, admin.checkRoleAdmin, admin.getAllInstructos)
 Router.patch('/adminupdateuser/:id', verifyToken,admin.checkRoleAdmin,  admin.updateAnUser)
 Router.get('/adminAllClasses', verifyToken, admin.checkRoleAdmin, admin.getAllClasses)
+Router.get('/admin/userstudent/:id', verifyToken, admin.checkRoleAdmin, admin.getAnUserById)
+
 
 module.exports = Router

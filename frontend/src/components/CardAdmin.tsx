@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { user } from "../services/interfaces/interfaces";
 import api from "../services/api";
+import styles from "../styles/CardAdmin.module.scss"
 
 export default function CardAdmin({id, name, lastname, email, password, roleid}:user){
     
@@ -60,23 +61,23 @@ export default function CardAdmin({id, name, lastname, email, password, roleid}:
     
     
     return(
-        <div>
-            <header>
-                <h1>ID do Aluno: {id}</h1>
-                <h2>Nome e sobrenome: {name} {lastname}</h2>
+        <div className={styles.Container}>
+            <header className={styles.HeaderCard}>
+                <h1 className={styles.Title}>ID do Aluno: {id}</h1>
+                <h2 className={styles.h2}>Nome e sobrenome: {name} {lastname}</h2>
             </header>
-            <main>
-                <p>Email: {email}</p>
-                <p>Senha Criptografada: {password}</p>
+            <main className={styles.Content} >
+                <p className={styles.P} style={{textWrap:'wrap'}}>Email: {email}</p>
+                <p className={styles.P} >Senha Criptografada: {password}</p>
             </main>
-            <footer>
+            <footer className={styles.Footer}>
                 <div>
-                    <p>Posição: {roleid === 2 ? "Estudante" : "Algo deu errado!"}</p>
+                    <p className={styles.P}>Posição: {roleid === 2 ? "Estudante" : "Algo deu errado!"}</p>
                 </div>
-                <div>
-                    <button disabled={false}>Atualizar</button>
-                    <button disabled={false} onClick={() => handleDeleteAnUser(id)}>Encerrar</button>
-                    <button onClick={() => handleBlackList(email, id)}>Lista Negra</button>
+                <div className={styles.ContainerBnt}>
+                    <button className={`${styles.Bnt} ${styles.BntAtt}`} >Atualizar</button>
+                    <button className={`${styles.Bnt} ${styles.BntDelete}`}  onClick={() => handleDeleteAnUser(id)}>Encerrar</button>
+                    <button className={`${styles.Bnt} ${styles.BntBlackList}`} onClick={() => handleBlackList(email, id)}>Lista Negra</button>
                 </div>
             </footer>
         </div>

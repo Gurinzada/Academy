@@ -149,7 +149,7 @@ export default function Admin(){
                     <div>
                         <h1>Usuários Ativos</h1>
                     </div>
-                    <div>
+                    <div style={{display:"flex", flexWrap:'wrap', justifyContent:'flex-start', alignItems:'center', gap:'2rem', marginLeft:'2rem'}}>
                         {myUsers && myUsers.length > 0 ? myUsers.map((item) => (
                             <CardAdmin email={item.email} id={item.id} lastname={item.lastname} name={item.name} password={item.password} roleid={item.roleid}/>
                         )) : "Nenhum usuário Cadastrado"}

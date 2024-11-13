@@ -1,0 +1,49 @@
+@import './Mixings.scss';
+
+.Container{
+    align-items: center;
+    background: linear-gradient(294deg, rgba(238, 238, 238, 0.243) 50%, rgba(46,108,70,1) 50%);
+    border: 1px solid #1c1c1c;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    justify-content: center;
+    padding: 0.5rem;
+    width: 40rem;
+}
+
+.HeaderCard{
+    align-items: flex-start;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    text-wrap: wrap;
+    width: 100%;
+}
+
+.P{
+    @include text(#1C1C1C, 1rem, "Roboto", 500)
+}
+
+.Title{
+    @include text(#1C1C1C, 3rem, "Montserrat", bold);
+    
+}
+
+.Footer{
+    align-items: flex-start;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    gap: .5rem;
+    width: 100%;
+}
+
+.ContainerBnt{
+    align-items: center;
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+}

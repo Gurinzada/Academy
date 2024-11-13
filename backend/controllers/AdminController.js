@@ -119,5 +119,21 @@ const checkRoleAdmin = async(req, res, next) => {
     }
 }
 
+const getAnUserById = async(req, res) => {
+    try {
+        const {id} = req.params
+        const response = await prisma.aluno.findUnique({
+            where:{
+                id: id
+            }
+        })
+        if(response){
+            return res.status(200).json(response)
+        }
+    } catch (error) {
+        return res.status(500).json({message: `Server error`})
+    }
+}
 
-module.exports = {LoginAdmin, getAllUsers, deleteAnUser, getAllInstructos, updateAnUser, checkRoleAdmin, getAllClasses}
+
+module.exports = {LoginAdmin, getAllUsers, deleteAnUser, getAllInstructos, updateAnUser, checkRoleAdmin, getAllClasses, getAnUserById}

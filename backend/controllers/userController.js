@@ -206,7 +206,6 @@ const getInstructorsNames = async (req, res) => {
 const logout = async (req,res) => {
     try {
         const role = req.headers["x-role"]
-        console.log(role)
         if(Number(role) === 2){
             const response = await prisma.aluno.findUnique({
                 where:{

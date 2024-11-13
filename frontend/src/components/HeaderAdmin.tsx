@@ -64,7 +64,6 @@ export default function HeaderAdmin(){
         <header className={styles.HeaderContainer}>
             <div>
                 <h1 className={styles.Title}>Bem vindo, {userInfo?.name} {userInfo?.lastname}</h1>
-                <p className={styles.Pnav} style={{paddingLeft: "0.35rem"}}>Confira o seu painel abaixo</p>
             </div>
             <div>
                 <p onClick={handleLogout}><a style={{cursor:"pointer"}}>Logout</a></p>
